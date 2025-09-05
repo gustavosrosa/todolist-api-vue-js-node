@@ -90,6 +90,7 @@
     "side-channel-weakmap": "^1.0.2",
     "simple-update-notifier": "^2.0.0",
     "statuses": "^2.0.2",
+    "sucrase": "^3.35.0",
     "supports-color": "^5.5.0",
     "to-regex-range": "^5.0.1",
     "toidentifier": "^1.0.1",
@@ -100,8 +101,8 @@
     "vary": "^1.1.2",
     "wrappy": "^1.0.2"
   },
-  "devDependencies": {},
   "scripts": {
+    "dev": "nodemon src/server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
