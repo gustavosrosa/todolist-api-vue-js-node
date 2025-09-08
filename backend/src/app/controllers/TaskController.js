@@ -45,6 +45,20 @@ class TaskController {
         return res.json(taskById);
     }
 
+    async update(req, res) {
+        const { id } = req.params;
+
+        const task = await Task.findByPk(id);
+
+        if (!task) {
+            return res.status(400).json("Tarefa não encontrada!")
+        }
+
+        await task.update(req.body);
+
+        return res.json("Alterado com sucesso!");
+    }
+
 }
 
 export default new TaskController();
