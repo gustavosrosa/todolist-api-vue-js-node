@@ -1,0 +1,4 @@
+Create migrations: npx sequelize-cli migration:generate --name your_migration_name
+Run migrations: npx sequelize-cli db:migrate
+
+Start sequelize: sequelize init
