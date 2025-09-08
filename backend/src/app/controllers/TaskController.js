@@ -51,12 +51,26 @@ class TaskController {
         const task = await Task.findByPk(id);
 
         if (!task) {
-            return res.status(400).json("Tarefa não encontrada!")
+            return res.status(400).json("Tarefa não encontrada!");
         }
 
         await task.update(req.body);
 
         return res.json("Alterado com sucesso!");
+    }
+
+    async remove(req, res) {
+        const { id } = req.params;
+
+        const task = await Task.findByPk(id);
+
+        if (!task) {
+            return res.status(400).json("Tarefa não encontrada!");
+        }
+
+        await task.destroy();
+
+        return res.json("Removida com sucesso!");
     }
 
 }

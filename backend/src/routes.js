@@ -7,5 +7,6 @@ routes.post("/task", TaskController.store);
 routes.get("/task", TaskController.getTasks);
 routes.get("/task/:id", TaskController.getTaskById);
 routes.put("/task/:id", TaskController.update);
+routes.delete("/task/:id", TaskController.remove);
 
 export default routes;
