@@ -19,6 +19,32 @@ class TaskController {
         return res.status(201).json("Tarefa criada com sucesso!");
     }
 
+    /**
+     * Get All Tasks
+     */
+    async getTasks(req, res) {
+        const tasks = await Task.findAll();
+        return res.json(tasks);
+    }
+
+    /**
+     * Get task by ID
+     * @param {*} req 
+     * @param {*} res 
+     * @returns a task filtered by your id
+     */
+    async getTaskById(req, res) {
+        const { id } = req.params
+
+        const taskById = await Task.findByPk(id);
+
+        if (!taskById) {
+            return res.json({});
+        }
+
+        return res.json(taskById);
+    }
+
 }
 
 export default new TaskController();
