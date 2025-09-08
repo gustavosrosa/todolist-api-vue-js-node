@@ -1,4 +1,5 @@
 import Sequelize, { Model } from 'sequelize';
+import { strings } from '../../../languages';
 
 class Task extends Model {
 
@@ -8,6 +9,8 @@ class Task extends Model {
             description: Sequelize.STRING,
         },
         {
+            freezeTableName: true,
+            tableName: strings.TABLE_TASKS,
             sequelize
         })
     }

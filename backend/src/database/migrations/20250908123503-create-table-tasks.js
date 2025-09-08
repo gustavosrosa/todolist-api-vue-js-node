@@ -1,6 +1,8 @@
 'use strict';
 
-const TABLE = 'tasks';
+const { strings } = require('../../../languages');
+
+const TABLE = strings.TABLE_TASKS;
 
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
