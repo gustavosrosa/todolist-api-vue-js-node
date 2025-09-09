@@ -4,11 +4,13 @@ module.exports = {
     browser: true,
     node: true
   },
-  parser: '@babel/eslint-parser',
+  parser: "vue-eslint-parser",
   parserOptions: {
-    requireConfigFile: false, // não exige que ESLint encontre babel.config.js
+    ecmaVersion: 2021,
+    sourceType: "module",
+    requireConfigFile: false,
     babelOptions: {
       presets: ['@vue/cli-plugin-babel/preset']
     },
-    ecm
-  }}
+  },
+}
