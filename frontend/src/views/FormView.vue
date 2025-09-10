@@ -14,7 +14,7 @@
             <BButton type="reset" variant="danger" :disabled="!form.email">Limpar</BButton>
 
             <BModal v-model="modal" :title="'Ocorreu um erro'">
-                {{ errorMessage }}
+                {{ message }}
 
                 <template #footer>
                     <BButton variant="danger" @click="irParaLista">
@@ -44,21 +44,20 @@ const show = ref(true)
 const onSubmit = (event) => {
     event.preventDefault()
 
-    modal.value = true;
-
     axios.post("https://todolist-api-vue-js-node.onrender.com/task", form).then(response => {
+        modal.value = true;
         message.value = response.data;
-        console.log('User created:', response.data);
+        console.log('User created:', response);
     }).catch(error => {
-        message.value = error;
-        console.error('Error creating user:', error);
+        modal.value = true;
+        message.value = error.response.data;
+        console.error('Error creating user:', error.response.data);
     });
-
 
 }
 
 function irParaLista() {
-    router.push(['/']);
+    router.push('/');
 }
 
 
@@ -66,6 +65,5 @@ const onReset = (event) => {
     event.preventDefault()
     form.name = '';
     form.description = '';
-
 }
 </script>
