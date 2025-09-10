@@ -1,7 +1,9 @@
 <template>
   <div>
     <NavbarComponent></NavbarComponent>
-    <router-view/>
+    <div class="mt-4 ml-4 mr-4">
+      <router-view/>
+    </div>
   </div>
 </template>
 

@@ -1,11 +1,17 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
-import HomeView from '../views/FormView.vue'
+import TaskView from '../views/TaskView.vue'
+import FormView from '@/views/FormView.vue'
 
 const routes = [
   {
     path: '/',
     name: 'home',
-    component: HomeView
+    component: TaskView
+  },
+  {
+    path: '/form',
+    name: 'form',
+    component: FormView
   },
 ]
 

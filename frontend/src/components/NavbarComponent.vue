@@ -5,7 +5,7 @@
         <BCollapse id="nav-collapse" is-nav>
             <BNavbarNav class="ms-auto mb-2 mb-lg-0">
                 <BNavItem to="/">Tarefas</BNavItem>
-                <BNavItem to="/">Histórico</BNavItem>
+                <BNavItem to="/form">Formulário</BNavItem>
             </BNavbarNav>               
         </BCollapse>
     </BNavbar>
