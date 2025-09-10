@@ -1,12 +1,21 @@
 <template>
    <div>
-      <BCard title="Card Title">
-         <BCardText>
-            Some quick example text to build on the card title and make up the bulk of the card's content.
-         </BCardText>
-         <BButton to="/form" variant="primary" class="mr-2">Editar</BButton>
-         <BButton href="#" variant="danger">Excluir</BButton>
-      </BCard>
+      <div v-for="task in tasks" :key="task.id">
+         <BCard :title="task.name">
+            <BCardText>{{ task.description }}</BCardText>
+            <BButton to="/form" variant="primary" class="mr-2">Editar</BButton>
+            <BButton href="#" variant="danger">Excluir</BButton>
+         </BCard>
+      </div>
+      <BModal v-model="modal" :title="'Ocorreu um erro'">
+         {{ errorMessage }}
+
+         <template #footer>
+            <BButton variant="danger" @click="recarregarPagina">
+               Recarregar página
+            </BButton>
+         </template>
+      </BModal>
    </div>
 </template>
 
@@ -15,15 +24,23 @@
 import { onMounted, ref } from 'vue';
 import axios from 'axios';
 
-const data = ref({});
+const tasks = ref([]);
+const modal = ref(false)
+const errorMessage = ref("");
 
 onMounted(async () => {
    try {
       const response = await axios.get("https://todolist-api-vue-js-node.onrender.com/task");
-      data.value = response.data;
+      tasks.value = response.data;
    } catch (error) {
+      errorMessage.value = error.message;
+      modal.value = true;
       console.log("Error", error);
    }
 })
+
+function recarregarPagina() {
+   window.location.reload();
+}
 
 </script>
