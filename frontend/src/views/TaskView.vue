@@ -12,4 +12,18 @@
 
 <script setup>
 
+import { onMounted, ref } from 'vue';
+import axios from 'axios';
+
+const data = ref({});
+
+onMounted(async () => {
+   try {
+      const response = await axios.get("https://todolist-api-vue-js-node.onrender.com/task");
+      data.value = response.data;
+   } catch (error) {
+      console.log("Error", error);
+   }
+})
+
 </script>

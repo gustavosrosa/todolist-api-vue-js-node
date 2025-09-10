@@ -1,6 +1,6 @@
 <template>
     <BNavbar variant="dark">
-        <BNavbarBrand href="#" class="text-light">NavBar</BNavbarBrand>
+        <BNavbarBrand href="#" class="text-light">TODO List</BNavbarBrand>
         <BNavbarToggle  target="nav-collapse" />
         <BCollapse id="nav-collapse" is-nav>
             <BNavbarNav class="ms-auto mb-2 mb-lg-0">

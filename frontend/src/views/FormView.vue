@@ -10,7 +10,7 @@
             </BFormGroup>
 
             <BButton type="submit" variant="primary" class="mr-2">Cadastrar tarefa</BButton>
-            <BButton type="reset" variant="danger">Limpar</BButton>
+            <BButton type="reset" variant="danger" :disabled="!form.email">Limpar</BButton>
         </BForm>
     </div>
 
