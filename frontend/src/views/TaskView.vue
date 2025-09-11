@@ -1,6 +1,6 @@
 <template>
    <div>
-      <div v-for="task in tasks" :key="task.id">
+      <div v-for="task in tasks" :key="task.id" class="mb-4">
          <BCard :title="task.name">
             <BCardText>{{ task.description }}</BCardText>
             <BButton to="/form" variant="primary" class="mr-2">Editar</BButton>
