@@ -1,12 +1,6 @@
 <template>
    <div>
-      <div v-for="task in tasks" :key="task.id" class="mb-4">
-         <BCard :title="task.name">
-            <BCardText>{{ task.description }}</BCardText>
-            <BButton to="/form" variant="primary" class="mr-2">Editar</BButton>
-            <BButton href="#" variant="danger">Excluir</BButton>
-         </BCard>
-      </div>
+      <TaskInfoComponent v-for="task in tasks" :key="task.id" :task="task" class="mb-4" />
       <ModalComponent :title="'Ocorreu um erro'" :message="errorMessage" :action="'Recarregar página'"
             :option="'RELOAD'" :modal="modal"/>
    </div>
@@ -17,6 +11,7 @@
 import { onMounted, ref } from 'vue';
 import axios from 'axios';
 import ModalComponent from '@/components/ModalComponent.vue';
+import TaskInfoComponent from '@/components/TaskInfoComponent.vue';
 
 const tasks = ref([]);
 const modal = ref(false)
