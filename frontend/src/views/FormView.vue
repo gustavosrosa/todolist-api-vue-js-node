@@ -10,23 +10,41 @@
                     placeholder="Digite a descrição da tarefa (não obrigatória)" />
             </BFormGroup>
 
-            <BButton type="submit" variant="primary" class="mr-2">Cadastrar tarefa</BButton>
+            <BButton type="submit" variant="primary" class="mr-2">{{ action }}</BButton>
             <BButton type="reset" variant="danger" :disabled="!form.email">Limpar</BButton>
 
-            <ModalComponent :title="'Ocorreu um erro'" :message="message" :action="'Voltar'"
-            :option="'GO_BACK'" :modal="showModal"/>
+            <ModalComponent :title="'Ocorreu um erro'" :message="message" :action="'Voltar'" :option="'GO_BACK'"
+                :modal="showModal" />
         </BForm>
     </div>
 
 </template>
 
 <script setup>
-import { reactive, ref } from 'vue'
+import { onMounted, reactive, ref } from 'vue'
 import axios from 'axios';
 import ModalComponent from '@/components/ModalComponent.vue';
+import { useTaskStore } from '@/stores/taskStore';
 
 const showModal = ref(false)
 const message = ref("");
+const action = ref("Cadastrar tarefa");
+const taskStore = useTaskStore()
+const currentTask = taskStore.currentTask;
+const origin = taskStore.origin;
+
+onMounted(() => {
+    
+    if (currentTask) {
+        form.name = currentTask.name;
+        form.description = currentTask.description;
+    }
+
+    if (origin == "EDIT") {
+        action.value = "Editar tarefa";
+    }
+})
+
 
 const form = reactive({
     name: '',
@@ -34,8 +52,17 @@ const form = reactive({
 })
 
 const onSubmit = (event) => {
-    event.preventDefault()
+    event.preventDefault();
 
+    if (origin == "EDIT") {
+        updateTask(form);
+    } else {
+        postTask(form);
+    }
+
+}
+
+function postTask(form) {
     axios.post("https://todolist-api-vue-js-node.onrender.com/task", form).then(response => {
         showModal.value = true;
         message.value = response.data;
@@ -43,7 +70,19 @@ const onSubmit = (event) => {
         showModal.value = true;
         message.value = error.response.data;
     });
+}
 
+function updateTask(form) {
+
+    let id = currentTask.id;
+
+    axios.put(`https://todolist-api-vue-js-node.onrender.com/task/${id}`, form).then(response => {
+        showModal.value = true;
+        message.value = response.data;
+    }).catch(error => {
+        showModal.value = true;
+        message.value = error.response.data;
+    });
 }
 
 const onReset = (event) => {

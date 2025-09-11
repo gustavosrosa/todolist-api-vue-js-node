@@ -11,7 +11,7 @@ const routes = [
   {
     path: '/form',
     name: 'form',
-    component: FormView
+    component: FormView,
   },
 ]
 
