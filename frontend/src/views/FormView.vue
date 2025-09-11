@@ -39,11 +39,9 @@ const onSubmit = (event) => {
     axios.post("https://todolist-api-vue-js-node.onrender.com/task", form).then(response => {
         showModal.value = true;
         message.value = response.data;
-        console.log('User created:', response);
     }).catch(error => {
         showModal.value = true;
         message.value = error.response.data;
-        console.error('Error creating user:', error.response.data);
     });
 
 }

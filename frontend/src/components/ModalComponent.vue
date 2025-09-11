@@ -21,8 +21,6 @@
     const props = defineProps(['title', 'message', 'action', 'modal', 'option']);
     const modal = ref('')
 
-    console.log("Modal mudou:", props.modal)
-
     watch(() => props.modal, (showModal) => {
         modal.value = showModal;
     })

@@ -29,7 +29,6 @@ onMounted(async () => {
    } catch (error) {
       errorMessage.value = error.message;
       modal.value = true;
-      console.log("Error", error);
    }
 })
 
