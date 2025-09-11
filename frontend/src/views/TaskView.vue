@@ -5,10 +5,10 @@
       </div>
       <div v-else-if="tasks.length > 0">
          <TaskInfoComponent  v-for="task in tasks" :key="task.id" :task="task" class="mb-4" />
+         <CreateNewTaskComponent :showInfo="false" class="d-flex justify-content-center align-items-center"/>
       </div>
       <div v-else>
-         <CreateNewTaskComponent 
-            class="d-flex justify-content-center align-items-center"/>
+         <CreateNewTaskComponent :showInfo="true" class="d-flex justify-content-center align-items-center"/>
       </div>
       <ModalComponent :title="headerModal" :message="errorMessage" :modal="modal" />
    </div>
