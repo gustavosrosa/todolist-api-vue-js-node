@@ -54,6 +54,14 @@ class TaskController {
             return res.status(400).json("Tarefa não encontrada!");
         }
 
+        const taskExists = await Task.findOne({
+            where: { name: req.body.name },
+        });
+
+        if (taskExists) {
+            return res.status(400).json("Tarefa já existe!");   
+        }
+
         await task.update(req.body);
 
         return res.json("Alterado com sucesso!");
