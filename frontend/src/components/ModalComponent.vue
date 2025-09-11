@@ -1,6 +1,6 @@
 <template>
     <div>
-        <BModal v-model="modal" :title="props.title" no-header-close>
+        <BModal v-model="modal" :title="props.title" no-header-close no-close-on-backdrop>
             {{ props.message }}
 
             <template #footer>
