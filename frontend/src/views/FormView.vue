@@ -13,7 +13,7 @@
             <BButton type="submit" variant="primary" class="mr-2">{{ action }}</BButton>
             <BButton type="reset" variant="danger" :disabled="!form.email">Limpar</BButton>
 
-            <ModalComponent :title="headerModal" :message="message" :option="'GO_BACK'" :modal="showModal" />
+            <ModalComponent :title="headerModal" :message="message" :option="strings.VOLTAR" :modal="showModal" />
         </BForm>
     </div>
 
@@ -24,11 +24,12 @@ import { onMounted, reactive, ref } from 'vue'
 import axios from 'axios';
 import ModalComponent from '@/components/ModalComponent.vue';
 import { useTaskStore } from '@/stores/taskStore';
+import { strings } from '@/utils/strings';
 
 const showModal = ref(false)
-const message = ref("");
+const message = ref(strings.VAZIO);
 const action = ref("Cadastrar tarefa");
-const headerModal = ref("Sucesso!");
+const headerModal = ref(strings.SUCCESS);
 const taskStore = useTaskStore()
 const currentTask = taskStore.currentTask;
 const origin = taskStore.origin;
@@ -40,20 +41,20 @@ onMounted(() => {
         form.description = currentTask.description;
     }
 
-    if (origin == "EDIT") {
+    if (origin == strings.EDIT_FUNCIONALITY) {
         action.value = "Editar tarefa";
     }
 })
 
 const form = reactive({
-    name: '',
-    description: '',
+    name: strings.VAZIO,
+    description: strings.VAZIO,
 })
 
 const onSubmit = (event) => {
     event.preventDefault();
 
-    if (origin == "EDIT") {
+    if (origin == strings.EDIT_FUNCIONALITY) {
         updateTask(form);
     } else {
         postTask(form);
@@ -62,13 +63,13 @@ const onSubmit = (event) => {
 }
 
 function postTask(form) {
-    axios.post("https://todolist-api-vue-js-node.onrender.com/task", form).then(response => {
+    axios.post(strings.URL_BACKEND, form).then(response => {
         showModal.value = true;
         message.value = response.data;
     }).catch(error => {
         showModal.value = true;
         message.value = error.response.data;
-        headerModal.value = "Ocorreu um erro";
+        headerModal.value = strings.ERROR;
     });
 }
 
@@ -76,20 +77,20 @@ function updateTask(form) {
 
     let id = currentTask.id;
 
-    axios.put(`https://todolist-api-vue-js-node.onrender.com/task/${id}`, form).then(response => {
+    axios.put(`${strings.URL_BACKEND}/${id}`, form).then(response => {
         showModal.value = true;
         message.value = response.data;
     }).catch(error => {
         showModal.value = true;
         message.value = error.response.data;
-        headerModal.value = "Ocorreu um erro";
+        headerModal.value = strings.ERROR;
     });
 }
 
 const onReset = (event) => {
     event.preventDefault()
-    form.name = '';
-    form.description = '';
+    form.name = strings.VAZIO;
+    form.description = strings.VAZIO;
 }
 
 </script>
