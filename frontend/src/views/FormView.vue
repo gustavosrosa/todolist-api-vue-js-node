@@ -13,8 +13,7 @@
             <BButton type="submit" variant="primary" class="mr-2">{{ action }}</BButton>
             <BButton type="reset" variant="danger" :disabled="!form.email">Limpar</BButton>
 
-            <ModalComponent :title="'Ocorreu um erro'" :message="message" :action="'Voltar'" :option="'GO_BACK'"
-                :modal="showModal" />
+            <ModalComponent :title="headerModal" :message="message" :option="'GO_BACK'" :modal="showModal" />
         </BForm>
     </div>
 
@@ -29,6 +28,7 @@ import { useTaskStore } from '@/stores/taskStore';
 const showModal = ref(false)
 const message = ref("");
 const action = ref("Cadastrar tarefa");
+const headerModal = ref("Sucesso!");
 const taskStore = useTaskStore()
 const currentTask = taskStore.currentTask;
 const origin = taskStore.origin;
@@ -68,6 +68,7 @@ function postTask(form) {
     }).catch(error => {
         showModal.value = true;
         message.value = error.response.data;
+        headerModal.value = "Ocorreu um erro";
     });
 }
 
@@ -81,6 +82,7 @@ function updateTask(form) {
     }).catch(error => {
         showModal.value = true;
         message.value = error.response.data;
+        headerModal.value = "Ocorreu um erro";
     });
 }
 

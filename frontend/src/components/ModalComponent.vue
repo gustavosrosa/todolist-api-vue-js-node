@@ -5,7 +5,7 @@
 
             <template #footer>
                 <BButton variant="danger" @click="acaoButton(props.option)">
-                    {{ props.action }}
+                    {{ action }}
                 </BButton>
             </template>
         </BModal>
@@ -18,8 +18,9 @@
     import { ref, watch } from 'vue';
     import { defineProps } from 'vue';
 
-    const props = defineProps(['title', 'message', 'action', 'modal', 'option']);
+    const props = defineProps(['title', 'message', 'modal', 'option']);
     const modal = ref('')
+    const action = ref("Voltar");
 
     watch(() => props.modal, (showModal) => {
         modal.value = showModal;
@@ -31,6 +32,7 @@
         if (opcao == 'GO_BACK') {
             router.push('/');
         } else {
+            action.value = "Recarregar página";
             window.location.reload();
         }
     }

@@ -1,8 +1,7 @@
 <template>
    <div>
       <TaskInfoComponent v-for="task in tasks" :key="task.id" :task="task" class="mb-4" />
-      <ModalComponent :title="'Ocorreu um erro'" :message="errorMessage" :action="'Recarregar página'"
-            :option="'RELOAD'" :modal="modal"/>
+      <ModalComponent :title="headerModal" :message="errorMessage" :option="'RELOAD'" :modal="modal"/>
    </div>
 </template>
 
@@ -16,6 +15,7 @@ import TaskInfoComponent from '@/components/TaskInfoComponent.vue';
 const tasks = ref([]);
 const modal = ref(false)
 const errorMessage = ref("");
+const headerModal = ref("Sucesso!");
 
 onMounted(async () => {
    try {
@@ -23,6 +23,7 @@ onMounted(async () => {
       tasks.value = response.data;
    } catch (error) {
       errorMessage.value = error.message;
+      headerModal.value = "Ocorreu um erro";
       modal.value = true;
    }
 })

@@ -5,8 +5,7 @@
             <BButton variant="primary" class="mr-2" @click="update(props.task)">Editar</BButton>
             <BButton href="#" variant="danger" @click="deleteTask(props.task.id)">Excluir</BButton>
         </BCard>
-        <ModalComponent :title="'OK'" :option="'RELOAD'" :message="message" :action="'Voltar'"
-                :modal="showModal" />
+        <ModalComponent :title="headerModal" :option="'RELOAD'" :message="message" :modal="showModal" />
     </div>
 </template>
 
@@ -21,6 +20,7 @@ import ModalComponent from './ModalComponent.vue';
 const props = defineProps(['task']);
 const message = ref("Retorno");
 const showModal = ref(false);
+const headerModal = ref("Sucesso!");
 
 function update(task) {
     useTaskStore().currentTask = task;
@@ -35,6 +35,7 @@ function deleteTask(id) {
     }).catch(error => {
         showModal.value = true;
         message.value = error.response.data;
+        headerModal.value = "Ocorreu um erro.";
     });
 }
 
