@@ -6,3 +6,10 @@ export const useTaskStore = defineStore('task', {
     origin: null
   })
 })
+
+export const useRouteStore = defineStore('route', {
+  state: () => ({
+    route: null,
+  })
+})
+
