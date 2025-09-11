@@ -1,8 +1,15 @@
 <template>
    <div>
-      <TaskInfoComponent v-for="task in tasks" :key="task.id" :task="task" class="mb-4" />
-      <CreateNewTaskComponent v-if="tasks.length == 0"
-         class="d-flex justify-content-center align-items-center"/>
+      <div v-if="tasks == null">
+         <h1 class="text-secondary text-center">Carregando!</h1>
+      </div>
+      <div v-else-if="tasks.length > 0">
+         <TaskInfoComponent  v-for="task in tasks" :key="task.id" :task="task" class="mb-4" />
+      </div>
+      <div v-else>
+         <CreateNewTaskComponent 
+            class="d-flex justify-content-center align-items-center"/>
+      </div>
       <ModalComponent :title="headerModal" :message="errorMessage" :modal="modal" />
    </div>
 </template>
@@ -16,7 +23,7 @@ import TaskInfoComponent from '@/components/TaskInfoComponent.vue';
 import CreateNewTaskComponent from '@/components/CreateNewTaskComponent.vue';
 import { strings } from '@/utils/strings';
 
-const tasks = ref([]);
+const tasks = ref(null);
 const modal = ref(false)
 const errorMessage = ref(strings.VAZIO);
 const headerModal = ref(strings.SUCCESS);
