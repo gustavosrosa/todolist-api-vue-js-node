@@ -1,6 +1,6 @@
 <template>
     <div>
-        <BForm v-if="show" @submit="onSubmit" @reset="onReset">
+        <BForm @submit="onSubmit" @reset="onReset">
             <BFormGroup id="input-group-1" label="Tarefa:" label-for="input-1" class="mb-2">
                 <BFormInput id="input-1" v-model="form.name" type="text" placeholder="Digite a tarefa" required />
             </BFormGroup>
@@ -13,15 +13,8 @@
             <BButton type="submit" variant="primary" class="mr-2">Cadastrar tarefa</BButton>
             <BButton type="reset" variant="danger" :disabled="!form.email">Limpar</BButton>
 
-            <BModal v-model="modal" :title="'Ocorreu um erro'">
-                {{ message }}
-
-                <template #footer>
-                    <BButton variant="danger" @click="irParaLista">
-                        Voltar
-                    </BButton>
-                </template>
-            </BModal>
+            <ModalComponent :title="'Ocorreu um erro'" :message="message" :action="'Voltar'"
+            :option="'GO_BACK'" :modal="showModal"/>
         </BForm>
     </div>
 
@@ -30,40 +23,35 @@
 <script setup>
 import { reactive, ref } from 'vue'
 import axios from 'axios';
-import router from '@/router';
+import ModalComponent from '@/components/ModalComponent.vue';
 
-const modal = ref(false)
+const showModal = ref(false)
 const message = ref("");
 
 const form = reactive({
     name: '',
     description: '',
 })
-const show = ref(true)
 
 const onSubmit = (event) => {
     event.preventDefault()
 
     axios.post("https://todolist-api-vue-js-node.onrender.com/task", form).then(response => {
-        modal.value = true;
+        showModal.value = true;
         message.value = response.data;
         console.log('User created:', response);
     }).catch(error => {
-        modal.value = true;
+        showModal.value = true;
         message.value = error.response.data;
         console.error('Error creating user:', error.response.data);
     });
 
 }
 
-function irParaLista() {
-    router.push('/');
-}
-
-
 const onReset = (event) => {
     event.preventDefault()
     form.name = '';
     form.description = '';
 }
+
 </script>

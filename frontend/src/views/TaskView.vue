@@ -7,15 +7,8 @@
             <BButton href="#" variant="danger">Excluir</BButton>
          </BCard>
       </div>
-      <BModal v-model="modal" :title="'Ocorreu um erro'">
-         {{ errorMessage }}
-
-         <template #footer>
-            <BButton variant="danger" @click="recarregarPagina">
-               Recarregar página
-            </BButton>
-         </template>
-      </BModal>
+      <ModalComponent :title="'Ocorreu um erro'" :message="errorMessage" :action="'Recarregar página'"
+            :option="'RELOAD'" :modal="modal"/>
    </div>
 </template>
 
@@ -23,6 +16,7 @@
 
 import { onMounted, ref } from 'vue';
 import axios from 'axios';
+import ModalComponent from '@/components/ModalComponent.vue';
 
 const tasks = ref([]);
 const modal = ref(false)
@@ -38,9 +32,5 @@ onMounted(async () => {
       console.log("Error", error);
    }
 })
-
-function recarregarPagina() {
-   window.location.reload();
-}
 
 </script>
