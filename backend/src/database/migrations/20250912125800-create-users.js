@@ -1,6 +1,8 @@
 'use strict';
 
-const TABLE = "users";
+const { strings } = require('../../../languages');
+
+const TABLE = strings.TABLE_USERS;
 
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
