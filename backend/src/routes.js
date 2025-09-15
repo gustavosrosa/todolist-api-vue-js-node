@@ -2,6 +2,7 @@ import { Router } from "express";
 import TaskController from "./app/controllers/TaskController";
 import UserController from "./app/controllers/UserController";
 import SessionController from "./app/controllers/SessionController";
+import auth from "./app/middlewares/auth";
 
 const routes = new Router();
 
@@ -17,11 +18,15 @@ routes.delete("/task/:id", TaskController.remove);
 /**
  * Routes User
  */
-routes.post("/user", UserController.create);
+routes.post("/users", UserController.create);
 
 /**
  * Routes Sessions
  */
 routes.post("/sessions", SessionController.store);
+
+routes.use(auth);
+
+routes.put("/users", UserController.update);
 
 export default routes;
