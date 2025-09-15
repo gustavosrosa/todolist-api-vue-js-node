@@ -1,5 +1,5 @@
-<template>
-    <div>
+<template >
+    <div class="mt-4 ml-4 mr-4">
         <BForm @submit="onSubmit" @reset="onReset">
             <BFormGroup id="input-group-1" label="Tarefa:" label-for="input-1" class="mb-2">
                 <BFormInput id="input-1" v-model="form.name" type="text" placeholder="Digite a tarefa" required />

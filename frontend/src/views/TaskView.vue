@@ -1,5 +1,5 @@
 <template>
-   <div>
+   <div class="mt-4 ml-4 mr-4">
       <div v-if="tasks == null">
          <h1 class="text-secondary text-center">Carregando!</h1>
       </div>

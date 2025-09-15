@@ -2,6 +2,7 @@ import { createRouter, createWebHashHistory } from 'vue-router'
 import TaskView from '../views/TaskView.vue'
 import FormView from '@/views/FormView.vue'
 import { useRouteStore } from '@/stores/taskStore'
+import LoginView from '@/views/LoginView.vue'
 
 const routes = [
   {
@@ -13,6 +14,11 @@ const routes = [
     path: '/form',
     name: 'form',
     component: FormView,
+  },
+  {
+    path: '/login',
+    name: 'login',
+    component: LoginView,
   },
 ]
 
