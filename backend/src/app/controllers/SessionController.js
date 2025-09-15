@@ -1,3 +1,7 @@
+import auth from "../../config/auth";
+import User from "../models/User";
+import jwt from 'jsonwebtoken';
+
 class SessionController {
 
     async store(req, res) {

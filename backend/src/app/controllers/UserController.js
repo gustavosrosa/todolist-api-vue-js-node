@@ -37,7 +37,7 @@ class UserController {
             return res.status(401).json("Senha inválida!");
         }
 
-        await User.update(req.body);
+        await user.update(req.body);
 
         return res.json("Usuário alterado com sucesso!");
     }
