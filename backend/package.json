@@ -55,6 +55,7 @@
     "is-glob": "^4.0.3",
     "is-number": "^7.0.0",
     "is-promise": "^4.0.0",
+    "jsonwebtoken": "^9.0.2",
     "math-intrinsics": "^1.1.0",
     "media-typer": "^1.1.0",
     "merge-descriptors": "^2.0.0",
