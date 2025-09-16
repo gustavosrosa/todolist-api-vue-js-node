@@ -11,7 +11,7 @@
 
             <div class="d-flex flex-row justify-content-center align-items-center">
                 <LinkComponent route="/login/new-user" infoText="Novo usuário" enableMarginRight="true"/>
-                <LinkComponent route="/" infoText="Esqueceu sua senha?"/>
+                <LinkComponent route="/login/change-password" infoText="Esqueceu sua senha?"/>
             </div>
 
             <BButton type="submit" variant="primary" class="mr-2">Login</BButton>
