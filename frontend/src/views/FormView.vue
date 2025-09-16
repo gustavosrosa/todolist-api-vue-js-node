@@ -13,7 +13,7 @@
             <BButton type="submit" variant="primary" class="mr-2">{{ action }}</BButton>
             <BButton type="reset" variant="danger" :disabled="!form.email">Limpar</BButton>
 
-            <ModalComponent :title="headerModal" :message="message" :option="strings.VOLTAR" :modal="showModal" />
+            <ModalComponent :title="headerModal" :message="message" :option="routes.TELA_PRINCIPAL" :modal="showModal" />
         </BForm>
     </div>
 
@@ -24,7 +24,7 @@ import { onMounted, reactive, ref } from 'vue'
 import axios from 'axios';
 import ModalComponent from '@/components/ModalComponent.vue';
 import { useTaskStore } from '@/stores/taskStore';
-import { strings } from '@/utils/strings';
+import { routes, strings } from '@/utils/strings';
 
 const showModal = ref(false)
 const message = ref(strings.VAZIO);

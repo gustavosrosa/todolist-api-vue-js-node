@@ -8,3 +8,7 @@ export const strings = {
    VAZIO: "",
 }
 
+export const routes = {
+   TELA_PRINCIPAL: '/'
+}
+

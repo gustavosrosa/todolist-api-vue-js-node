@@ -14,28 +14,28 @@
 
 <script setup>
 
-    import router from '@/router';
+import router from '@/router';
 import { strings } from '@/utils/strings';
-    import { ref, watch } from 'vue';
-    import { defineProps } from 'vue';
+import { ref, watch } from 'vue';
+import { defineProps } from 'vue';
 
-    const props = defineProps(['title', 'message', 'modal', 'option']);
-    const modal = ref(strings.VAZIO)
-    const action = ref(strings.VOLTAR);
+const props = defineProps(['title', 'message', 'modal', 'option']);
+const modal = ref(strings.VAZIO)
+const action = ref(strings.VOLTAR);
 
-    watch(() => props.modal, (showModal) => {
-        modal.value = showModal;
-    })
+watch(() => props.modal, (showModal) => {
+    modal.value = showModal;
+})
 
-    modal.value = props.modal;
+modal.value = props.modal;
 
-    function acaoButton(opcao) {
-        if (opcao == strings.VOLTAR) {
-            router.push('/');
-        } else {
-            action.value = strings.RECARREGAR_PAGINA;
-            window.location.reload();
-        }
+function acaoButton(opcao) {
+    if (opcao) {
+        router.push(opcao);
+    } else {
+        action.value = strings.RECARREGAR_PAGINA;
+        window.location.reload();
     }
+}
 
 </script>

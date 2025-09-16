@@ -10,13 +10,13 @@
             </BFormGroup>
 
             <div class="d-flex flex-row justify-content-center align-items-center">
-                <LinkComponent route="/" infoText="Novo usuário" enableMarginRight="true"/>
+                <LinkComponent route="/login/new-user" infoText="Novo usuário" enableMarginRight="true"/>
                 <LinkComponent route="/" infoText="Esqueceu sua senha?"/>
             </div>
 
             <BButton type="submit" variant="primary" class="mr-2">Login</BButton>
 
-            <ModalComponent :title="headerModal" :message="message" :option="strings.VOLTAR" :modal="showModal" />
+            <ModalComponent :title="headerModal" :message="message" :option="routes.TELA_PRINCIPAL" :modal="showModal" />
         </BForm>
     </div>
 </template>
@@ -24,7 +24,7 @@
 <script setup>
 import { reactive, ref } from 'vue'
 import ModalComponent from '@/components/ModalComponent.vue';
-import { strings } from '@/utils/strings';
+import { routes, strings } from '@/utils/strings';
 import LinkComponent from '@/components/LinkComponent.vue';
 
 const showModal = ref(false)
